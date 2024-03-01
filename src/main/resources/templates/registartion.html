@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+
+<head>
+<meta charset="utf-8">
+<title>Restoran - Bootstrap Restaurant Template</title>
+
+</head>
+
+<body>
+	<section>
+		<div class="container-xxl py-5 bg-dark hero-header mb-5">
+			<div class="container text-center my-5 pt-5 pb-4">
+				<h1 class="display-3 text-white mb-3 animated slideInDown">Register
+					as partner</h1>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb justify-content-center text-uppercase">
+						<li class="breadcrumb-item"><a href="/">Home</a></li>
+						<li class="breadcrumb-item"><a href="#">Pages</a></li>
+						<li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
+					</ol>
+				</nav>
+			</div>
+		</div>S
+
+		<div class="container-xxl py-5 px-0 wow fadeInUp"
+			data-wow-delay="0.1s">
+			<div class="row g-0">
+				<div class="col-md-6 bg-dark d-flex align-items-center">
+					<div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+						<h5
+							class="section-title ff-secondary text-start text-primary fw-normal"></h5>
+						<h1 class="text-white mb-4">Registration Form</h1>
+						<th:block th:if="${session.msg}">
+								<h6 class="text-center text-success">[[${session.msg}]]</h6>
+								<th:block th:text="${@userServiceImpl.removeSessionMsg}"></th:block>
+							</th:block>
+						
+						<form th:action="@{SaveRegistartion}" method="post">
+						
+						
+							<div class="row g-3">
+								<div class="col-md-6">
+									<div class="form-floating">
+										<input type="text" name="name" class="form-control" id="name"
+											placeholder="Your Name"> <label for="name">Your
+											Name</label>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-floating">
+										<input type="email" name="email" class="form-control" id="email"
+											placeholder="Your Email"> <label for="email">Your
+											Email</label>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-floating date" id="date3"
+										data-target-input="nearest">
+										<input type="text" name="occupation" class="form-control" id="occupation"
+											placeholder="occupation" /> <label for="datetime">Occupation</label>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-floating">
+										<select name="experience" class="form-select" id="select1">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6+</option>
+										</select> <label for="select1">Year Of Experience</label>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-floating">
+										<input type="text" name="district" class="form-control" id="district"
+											placeholder="Your district"> <label for="name">District</label>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-floating">
+										<select name="range" class="form-select" id="select1">
+											<option value="1">1km</option>
+											<option value="2">2km</option>
+											<option value="3">3km</option>
+											<option value="4">4km</option>
+											<option value="5">5km</option>
+											<option value="6">6km+</option>
+										</select> <label for="select1">Your working range</label>
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-floating">
+										<textarea name="about" class="form-control" placeholder="Special Request"
+											id="message" style="height: 100px"></textarea>
+										<label for="message">About you</label>
+									</div>
+								</div>
+								<div class="col-12">
+									<button class="btn btn-primary w-100 py-3" type="submit">Register</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

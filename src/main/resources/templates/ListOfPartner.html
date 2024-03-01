@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+
+<head>
+    <meta charset="utf-8">
+    <title>Restoran - Bootstrap Restaurant Template</title>
+    
+</head>
+
+<body>
+  <section>
+
+            <div class="container-xxl py-5 bg-dark hero-header mb-5">
+                <div class="container text-center my-5 pt-5 pb-4">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">List of work</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+       	<div class="container-fluid p-2">
+		<h4 class="text-center">All partner</h4>
+			<div class="row">
+				<div th:each="n:${ListOfPartner}" class="col-md-10 offset-md-1 mt-2">
+					<div class="card shadow-sm p-1 mb-2 bg-body rounded">
+						<div class="card-body">
+							<div class="text-center">
+								<img alt="" src="">
+							</div>
+							<h4><p class="bold">[[${n.name}]]</p></h4>
+							<p>Occupation [[${n.occupation}]]</p>
+							<P>Year of experience :[[${n.experience}]]</P>
+							<p>My location : [[${n.district}]]</p>
+							<P>Range of service provide :[[${n.range}]]Km</P>
+							
+							<div class="text-center">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+</section>
+        
+</body>
+
+</html>
