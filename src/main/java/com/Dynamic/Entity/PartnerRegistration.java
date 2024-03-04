@@ -15,6 +15,7 @@ public class PartnerRegistration {
 	private int id;
 	private String name;
 	private String email;
+	private String phone;
 	private String occupation;
 	private String experience;
 	private String district;
@@ -77,10 +78,18 @@ public class PartnerRegistration {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	@Override
 	public String toString() {
-		return "partner [id=" + id + ", name=" + name + ", email=" + email + ", occupation=" + occupation
-				+ ", experience=" + experience + ", district=" + district + ", range=" + range + ", about=" + about
-				+ ", role=" + role + "]";
+		return "PartnerRegistration [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone
+				+ ", occupation=" + occupation + ", experience=" + experience + ", district=" + district + ", range="
+				+ range + ", about=" + about + ", role=" + role + "]";
 	}
+	
 }

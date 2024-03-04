@@ -46,9 +46,9 @@ public class HomeController {
 		return "service";
 	}
 	
-	@RequestMapping("menu")
+	@RequestMapping("Listofservices")
 	public String menu(Model model) {
-		return "menu";
+		return "Listofservices";
 	}
 	
 	
@@ -79,7 +79,7 @@ public class HomeController {
 	//save contact form
 	@PostMapping("SaveContact")
 	public String SaveContact( @ModelAttribute Contact contact,HttpSession session,Model m) {
-		Boolean f = userService.existEmailChack(contact.getEmail());
+		boolean f = userService.existEmailChack(contact.getEmail());
 		if(f) {
 			session.setAttribute("msg", "This email is already exit");
 		}else {
@@ -105,7 +105,7 @@ public class HomeController {
 	@PostMapping("/SaveRegistartion")
 	public String SaveRegistraion(@ModelAttribute PartnerRegistration partner,HttpSession session) {
 		
-		Boolean f=partnerRegistration.existEmailCheck(partner.getEmail());
+		boolean f=partnerRegistration.existEmailCheck(partner.getEmail());
 		if(f) {
 			session.setAttribute("msg", "This email is already exist");
 		}else {
