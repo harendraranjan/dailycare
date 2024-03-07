@@ -39,7 +39,9 @@
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal"></h5>
                         <h1 class="text-white mb-4">Online order</h1>
-                        <form>
+                        
+                        <form th:action="@{SaveOrderBooking}" method="post">
+                        
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
@@ -99,7 +101,6 @@
             </div>
         </div>
         <!-- Reservation Start -->
-        </section>
+       </section>
 </body>
-
 </html>

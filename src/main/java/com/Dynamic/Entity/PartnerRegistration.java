@@ -16,6 +16,7 @@ public class PartnerRegistration {
 	private String name;
 	private String email;
 	private String phone;
+	private String altPhone;
 	private String occupation;
 	private String experience;
 	private String district;
@@ -85,11 +86,19 @@ public class PartnerRegistration {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	
+	public String getAltPhone() {
+		return altPhone;
+	}
+	public void setAltPhone(String altPhone) {
+		this.altPhone = altPhone;
+	}
 	@Override
 	public String toString() {
 		return "PartnerRegistration [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone
-				+ ", occupation=" + occupation + ", experience=" + experience + ", district=" + district + ", range="
-				+ range + ", about=" + about + ", role=" + role + "]";
+				+ ", altPhone=" + altPhone + ", occupation=" + occupation + ", experience=" + experience + ", district="
+				+ district + ", range=" + range + ", about=" + about + ", role=" + role + "]";
 	}
 	
 }

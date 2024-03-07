@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.Dynamic.Dao.OrderBookingRepository;
 import com.Dynamic.Dao.PartnerRepository;
 import com.Dynamic.Entity.Contact;
+import com.Dynamic.Entity.OrderBooking;
 import com.Dynamic.Entity.PartnerRegistration;
 import com.Dynamic.service.PartnerRegistationService;
 import com.Dynamic.service.UserService;
@@ -24,8 +26,10 @@ public class HomeController {
 	private UserService userService;
 	 @Autowired
 	private PartnerRegistationService partnerRegistration;
-	 
+	 @Autowired
 	 private PartnerRepository partnerRepository;
+	 @Autowired
+	 private OrderBookingRepository orderBookingRepository;
 	 
 //	 @ModelAttribute
 //	 public PartnerRegistration GetPartner(Principal p, Model m) {
@@ -128,5 +132,14 @@ public class HomeController {
 
         return "ListOfPartner";
 	}
+	
+	@PostMapping("/SaveOrderBooking")
+	public String SaveOrderBooking(@ModelAttribute OrderBooking orderBooking, HttpSession session) {
+	    orderBookingRepository.save(orderBooking);
+		System.out.println(orderBooking);
+	    return "redirect:/booking";
+	}
+
+	
 	
 }

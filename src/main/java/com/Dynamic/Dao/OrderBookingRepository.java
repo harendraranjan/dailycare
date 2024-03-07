@@ -2,6 +2,8 @@ package com.Dynamic.Dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderBooking extends JpaRepository<OrderBooking, Long>{
+import com.Dynamic.Entity.OrderBooking;
+
+public interface OrderBookingRepository extends JpaRepository<OrderBooking, Integer>{
 	public boolean existsByEmail(String email);
 }

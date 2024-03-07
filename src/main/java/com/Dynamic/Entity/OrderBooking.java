@@ -8,8 +8,9 @@ import jakarta.persistence.Id;
 @Entity
 public class OrderBooking {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+
 	private String name;
 	private String email;
 	private String date;
@@ -18,15 +19,7 @@ public class OrderBooking {
 	
 	
 	
-	public OrderBooking(int id, String name, String email, String date, String phone, String specialRequest) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.date = date;
-		this.phone = phone;
-		this.specialRequest = specialRequest;
-	}
+	
 	public int getId() {
 		return id;
 	}
@@ -63,8 +56,10 @@ public class OrderBooking {
 	public void setSpecialRequest(String specialRequest) {
 		this.specialRequest = specialRequest;
 	}
+	@Override
+	public String toString() {
+		return "OrderBooking [id=" + id + ", name=" + name + ", email=" + email + ", date=" + date + ", phone=" + phone
+				+ ", specialRequest=" + specialRequest + "]";
+	}
 	
-	
-	
-
 }
