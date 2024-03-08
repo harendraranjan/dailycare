@@ -20,6 +20,7 @@ public class PartnerRegistration {
 	private String occupation;
 	private String experience;
 	private String district;
+	private String roll;
 	
 	@Column(name = "`range`")
 	private String range;
@@ -94,11 +95,18 @@ public class PartnerRegistration {
 	public void setAltPhone(String altPhone) {
 		this.altPhone = altPhone;
 	}
+	public String getRoll() {
+		return roll;
+	}
+	public void setRoll(String roll) {
+		this.roll = roll;
+	}
 	@Override
 	public String toString() {
 		return "PartnerRegistration [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone
 				+ ", altPhone=" + altPhone + ", occupation=" + occupation + ", experience=" + experience + ", district="
-				+ district + ", range=" + range + ", about=" + about + ", role=" + role + "]";
+				+ district + ", roll=" + roll + ", range=" + range + ", about=" + about + ", role=" + role + "]";
 	}
+	
 	
 }

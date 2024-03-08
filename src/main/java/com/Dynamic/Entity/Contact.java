@@ -12,6 +12,8 @@ public class Contact {
 	private int id;
 	private String name;
 	private String email;
+	private String password;
+	private String phone;
 	private String subject;
 	private String msg;
 	
@@ -47,10 +49,17 @@ public class Contact {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public String getPhone() {
+		return phone;
+	}
 	@Override
 	public String toString() {
-		return "Contact [id=" + id + ", name=" + name + ", emial=" + email + ", subject=" + subject + ", msg=" + msg
-				+ "]";
+		return "Contact [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", phone="
+				+ phone + ", subject=" + subject + ", msg=" + msg + "]";
 	}
 	
 }

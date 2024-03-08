@@ -15,7 +15,10 @@ import com.Dynamic.Dao.PartnerRepository;
 import com.Dynamic.Entity.Contact;
 import com.Dynamic.Entity.OrderBooking;
 import com.Dynamic.Entity.PartnerRegistration;
+import com.Dynamic.Entity.UserRegistration;
+import com.Dynamic.service.OrderBookingService;
 import com.Dynamic.service.PartnerRegistationService;
+import com.Dynamic.service.UserRegistrationServise;
 import com.Dynamic.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -26,55 +29,37 @@ public class HomeController {
 	private UserService userService;
 	 @Autowired
 	private PartnerRegistationService partnerRegistration;
+
 	 @Autowired
-	 private PartnerRepository partnerRepository;
+	 private OrderBookingService orderBookingService;
+	 
 	 @Autowired
-	 private OrderBookingRepository orderBookingRepository;
+	private UserRegistrationServise userRegistrationServise;
+		
+		
 	 
-//	 @ModelAttribute
-//	 public PartnerRegistration GetPartner(Principal p, Model m) {
-//		 String email=p.getName();
-//		 PartnerRegistration partnerRegistration = partnerRepository.findByEmail(email);
-//		m.addAttribute("partnerRegistration", partnerRegistration);
-//		return partnerRegistration;
-//	 }
-	 
+	 @RequestMapping("/error/access-denied")
+	 public String accessDenied() {
+	     return "error/access-denied";
+	 }
 	
 	@RequestMapping(value = {"","/","home"})
 	public String displayHome(Model model) {
 		model.addAttribute("UserName"," Harendra Ranjan");
 		return "index";
 	}
-	@RequestMapping("service")
-	public String Service(Model model) {
-		return "service";
-	}
-	
-	@RequestMapping("Listofservices")
-	public String menu(Model model) {
-		return "Listofservices";
-	}
 	
 	
-	@RequestMapping("booking")
-	public String Booking(Model model) {
-		return "booking";
-	}
-	
-	@RequestMapping("team")
-	public String team(Model model) {
-		return "team";
-	}
-	
-	
-	@RequestMapping("about")
+	@RequestMapping("/about")
 	public String About(Model model) {
 		return "about";
 	}
-	@RequestMapping("testimonial")
+	@RequestMapping("/testimonial")
 	public String testimonial() {
 		return "testimonial";
 	}
+	
+	
 	//Contact 
 	@RequestMapping("contact")
 	public String Contact() {
@@ -85,7 +70,7 @@ public class HomeController {
 	public String SaveContact( @ModelAttribute Contact contact,HttpSession session,Model m) {
 		boolean f = userService.existEmailChack(contact.getEmail());
 		if(f) {
-			session.setAttribute("msg", "This email is already exit");
+			session.setAttribute("msg", "I have already recive your message i will contact you as soon as possible");
 		}else {
 			Contact c=userService.saveUser(contact);
 			if(c!=null) {
@@ -123,23 +108,38 @@ public class HomeController {
 		
 		return "redirect:/registartion";
 	}
-	@RequestMapping("/ListOfPartner")
-	public String Partner(Model m,Principal p) {
-
-        // Fetch the list of partners from your service
-        List<PartnerRegistration> listOfPartners = partnerRegistration.getAllPartners();
-        m.addAttribute("ListOfPartner", listOfPartners);  // Add the list to the model
-
-        return "ListOfPartner";
-	}
+	
 	
 	@PostMapping("/SaveOrderBooking")
 	public String SaveOrderBooking(@ModelAttribute OrderBooking orderBooking, HttpSession session) {
-	    orderBookingRepository.save(orderBooking);
+	    orderBookingService.saveOrderBooking(orderBooking);
 		System.out.println(orderBooking);
 	    return "redirect:/booking";
 	}
 
+	@RequestMapping("/UserRegistration")
+	public String UserRegistraion() {
+		return "UserRegistration";
+	}
+	
+	@PostMapping("/SaveUserRegistraion")
+	public String SaveUserRegistraion( @ModelAttribute UserRegistration userRegistration, HttpSession session, Model m) {
+		boolean f = userRegistrationServise.existEmailChack(userRegistration.getEmail());
+		if(f) {
+			session.setAttribute("msg", "This email is already exist");
+		}else {
+			UserRegistration saveUserRegistration = userRegistrationServise.saveUserRegistration(userRegistration);
+			System.out.println(userRegistration);
+			if(saveUserRegistration!=null) {
+				session.setAttribute("msg","Your registration have done successfully" );
+			}else {
+				session.setAttribute("msg", "Your registration haven't done successfully");
+			
+			}
+		}
+		System.out.println("User Registration: " + userRegistration);
+		return "redirect:/UserRegistration";
+	}
 	
 	
 }

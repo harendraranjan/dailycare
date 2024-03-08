@@ -20,7 +20,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public Contact saveUser(Contact contact) {
+		
 		Contact SaveCont=userRepository.save(contact);
+		
 		return SaveCont;
 	}
 	

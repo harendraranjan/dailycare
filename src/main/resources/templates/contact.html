@@ -84,29 +84,41 @@
 									<div class="col-md-6">
 										<div class="form-floating">
 											<input type="text" name="name" class="form-control" id="name"
-												placeholder="Your Name"> <label for="name">Your
+												placeholder="Your Name" required="required"> <label for="name">Your
 												Name</label>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-floating">
 											<input type="email" name="email" class="form-control"
-												id="email" placeholder="Your Email"> <label
+												id="email" placeholder="Your Email" required="required"> <label
 												for="email">Your Email</label>
 										</div>
 									</div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input name="phone" type="tel" class="form-control" id="email" placeholder="Your Phone Number" required="required">
+                                        <label for="phone">Phone number</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input name="phone" type="tel" class="form-control" id="email" placeholder="Your Phone Number">
+                                        <label for="phone">Phone number</label>
+                                    </div>
+                                </div>
 									<div class="col-12">
 										<div class="form-floating">
-											<input type="text" name="subject" class="form-control"
-												id="subject" placeholder="Subject"> <label
+											<input type="password" name="subject" class="form-control"
+												id="subject" placeholder="Subject" required="required"> <label
 												for="subject">Subject</label>
 										</div>
 									</div>
-									<div class="col-12">
+									 <div class="col-12">
 										<div class="form-floating">
 											<textarea class="form-control" name="msg"
 												placeholder="Leave a message here" id="message"
-												style="height: 150px"></textarea>
+												style="height: 150px" required="required"></textarea>
 											<label for="message">Message</label>
 										</div>
 									</div>

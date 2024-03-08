@@ -45,10 +45,7 @@
 		<nav
 			class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
 			<a href="/" class="navbar-brand p-0">
-				<h1 class="text-primary m-0">
-					<!--<i class="fa fa-utensils me-3"></i>-->
-					NeighbourHood
-				</h1> <!-- <img src="img/logo.png" alt="Logo"> -->
+				<h1 class="text-primary m-0">FixMaster</h1>
 			</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -57,27 +54,72 @@
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<div class="navbar-nav ms-auto py-0 pe-4">
 					<a th:href="@{/home}" class="nav-item nav-link active">Home</a> <a
-						th:href="@{/about}" class="nav-item nav-link">About</a> <a
-						th:href="@{/service}" class="nav-item nav-link">Services</a> <a
-						th:href="@{/Listofservices}" class="nav-item nav-link">List of services</a>
+						th:href="@{/about}" class="nav-item nav-link">About</a>
+
+
+
+					<th:block th:if="${ userRegistration == null}">
+						<li class="nav-item"><a class="nav-link active"
+							href="/user/profile">Profile</a></li>
+					</th:block>
+
+					 <th:block th:if="${ userRegistration !=null}"><!--  -->
+
+					<a th:href="@{/user/Listofservices}" class="nav-item nav-link">List
+						of services</a>
 					<div class="nav-item dropdown">
 						<a href="#" class="nav-link dropdown-toggle"
 							data-bs-toggle="dropdown">Explore</a>
 						<div class="dropdown-menu m-0">
-							<a th:href="@{/booking}" class="dropdown-item">Booking</a> <a
-								th:href="@{/registartion}" class="dropdown-item">Join us</a><a
-								th:href="@{/ListOfPartner}" class="dropdown-item">Our trusted Partner</a><a
-								th:href="@{/team}" class="dropdown-item">Our Team</a> <a
-								th:href="@{/testimonial}" class="dropdown-item">Feadback</a>
+							<a th:href="@{/user/booking}" class="dropdown-item">Booking</a> <a
+								th:href="@{/user/ListOfPartner}" class="dropdown-item">Our
+								rusted Partner</a><a th:href="@{/user/team}" class="dropdown-item">Our
+								Team</a> <a th:href="@{/testimonial}" class="dropdown-item">Feadback</a>
 						</div>
 					</div>
+
+					  </th:block> -->
+
+
+
 					<a th:href="@{contact}" class="nav-item nav-link">Contact</a>
 				</div>
-				<a th:href="@{/booking}" class="btn btn-primary py-2 px-4">Book Time slot</a>
+				<th:block th:if="${ userRegistration ==NULL}">
+					<div class="nav-item dropdown">
+						<a href="#" class="btn btn-primary py-2 px-4"
+							data-bs-toggle="dropdown">Login/Registration</a>
+						<div class="dropdown-menu m-0">
+							<a th:href="@{/login}" class="dropdown-item">Login</a> <a
+								th:href="@{/UserRegistration}" class="dropdown-item">UserRegistraton</a><a
+								th:href="@{/registartion}" class="dropdown-item">Join Us</a> <a
+								th:href="@{/logout}" class="dropdown-item">Logout</a>
+						</div>
+					</div>
+				</th:block>
+
+			
+					
+				<th:block th:if="${userRegistration != null}">
+				<a class="nav-item nav-link"
+						href="/logout">Logout</a>
+					<li class="btn btn-primary py-2 px-4">
+					[[${userRegistration.name}]]</li>
+					
+				</th:block>
+
+
+
+
+
+
 			</div>
 		</nav>
 	</div>
 	<!-- Navbar & Hero End -->
+
+
+
+
 
 	<div th:replace="${content}"></div>
 
@@ -102,7 +144,9 @@
 					<h4
 						class="section-title ff-secondary text-start text-primary fw-normal mb-4">Office</h4>
 					<p class="mb-2">
-						<i class="fa fa-map-marker-alt me-3"></i>Shop-5, <br>Shitla mata mandir<br>Behind AKP college<br>new shiv puri <br>hapur India
+						<i class="fa fa-map-marker-alt me-3"></i>Shop-5, <br>Shitla
+						mata mandir<br>Behind AKP college<br>new shiv puri <br>hapur
+						India
 					</p>
 					<p class="mb-2">
 						<i class="fa fa-phone-alt me-3"></i>+91 98 345 67890
@@ -146,8 +190,8 @@
 			<div class="copyright">
 				<div class="row">
 					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-						&copy; <a class="border-bottom" href="#">NeighbourHood</a>, All
-						Right Reserved.
+						&copy; <a class="border-bottom" href="#">FixMaster</a>, All Right
+						Reserved.
 					</div>
 					<div class="col-md-6 text-center text-md-end">
 						<div class="footer-menu">
