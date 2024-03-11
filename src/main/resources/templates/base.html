@@ -53,13 +53,13 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<div class="navbar-nav ms-auto py-0 pe-4">
-					<a th:href="@{/home}" class="nav-item nav-link active">Home</a> <a
+					<a th:href="@{/home}" class="nav-item nav-link">Home</a> <a
 						th:href="@{/about}" class="nav-item nav-link">About</a>
 
 
 
 					<th:block th:if="${ userRegistration == null}">
-						<li class="nav-item"><a class="nav-link active"
+						<li class="nav-item"><a class="nav-link "
 							href="/user/profile">Profile</a></li>
 					</th:block>
 
@@ -78,7 +78,7 @@
 						</div>
 					</div>
 
-					  </th:block> -->
+					  </th:block>
 
 
 

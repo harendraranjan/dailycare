@@ -29,9 +29,6 @@ public class HomeController {
 	private UserService userService;
 	 @Autowired
 	private PartnerRegistationService partnerRegistration;
-
-	 @Autowired
-	 private OrderBookingService orderBookingService;
 	 
 	 @Autowired
 	private UserRegistrationServise userRegistrationServise;
@@ -80,7 +77,7 @@ public class HomeController {
 			}
 		}
 		
-		return "redirect:/contact";
+		return "redirect:/thankyou";
 	}
 	
 	//registration of user
@@ -106,17 +103,11 @@ public class HomeController {
 			}
 		}
 		
-		return "redirect:/registartion";
+		return "redirect:/SaveRegistartion";
 	}
 	
 	
-	@PostMapping("/SaveOrderBooking")
-	public String SaveOrderBooking(@ModelAttribute OrderBooking orderBooking, HttpSession session) {
-	    orderBookingService.saveOrderBooking(orderBooking);
-		System.out.println(orderBooking);
-	    return "redirect:/booking";
-	}
-
+	
 	@RequestMapping("/UserRegistration")
 	public String UserRegistraion() {
 		return "UserRegistration";
@@ -140,6 +131,9 @@ public class HomeController {
 		System.out.println("User Registration: " + userRegistration);
 		return "redirect:/UserRegistration";
 	}
-	
+	@RequestMapping("/thankyou")
+	public String thankyou() {
+		return "thankyou";
+	}
 	
 }

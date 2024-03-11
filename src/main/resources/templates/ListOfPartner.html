@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="base::layout(~{::section})">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <title>FixMaster</title>
-    
-    <link href="img/favicon.ico" rel="icon">
+<meta charset="utf-8">
+<title>FixMaster</title>
+
+<link href="img/favicon.ico" rel="icon">
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,51 +38,182 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 	integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    
-    
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+	$(document)
+			.ready(
+					function() {
+						// Function to filter partners based on district and serial name
+						function filterPartners() {
+							var selectedDistrict = $("#districtFilter").val();
+							var searchTerm = $("#searchTerm").val()
+									.toLowerCase();
+
+							$(".card").hide();
+
+							$(".card")
+									.each(
+											function() {
+												var partnerDistrict = $(this)
+														.find(".district")
+														.text().toLowerCase();
+												var partnerSerialName = $(this)
+														.find(".serialName")
+														.text().toLowerCase();
+
+												// Check if the partner matches the selected district and search term
+												if ((selectedDistrict === "All" || partnerDistrict === selectedDistrict)
+														&& (partnerSerialName
+																.includes(searchTerm) || searchTerm === "")) {
+													$(this).show();
+												}
+											});
+						}
+
+						// Event handler for search button click
+						$("#searchButton").click(function() {
+							filterPartners();
+						});
+
+						// Event handlers for filter changes
+						$("#districtFilter, #searchTerm").change(function() {
+							filterPartners();
+						});
+
+						// Initial filter
+						filterPartners();
+					});
+</script>
+
+
 </head>
 
 <body>
-  <section>
+	<!-- Navbar & Hero Start -->
+	<div class="container-xxl position-relative p-0">
+		<nav
+			class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+			<a href="/" class="navbar-brand p-0">
+				<h1 class="text-primary m-0">FixMaster</h1>
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+				<span class="fa fa-bars"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<div class="navbar-nav ms-auto py-0 pe-4">
+					<a th:href="@{/home}" class="nav-item nav-link active">Home</a> <a
+						th:href="@{/about}" class="nav-item nav-link">About</a>
 
-            <div class="container-xxl py-5 bg-dark hero-header mb-5">
-                <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">List of work</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-       	<div class="container-fluid p-2">
-		<h4 class="text-center">All partner</h4>
+
+
+					<th:block th:if="${ userRegistration == null}">
+						<li class="nav-item"><a class="nav-link active"
+							href="/user/profile">Profile</a></li>
+					</th:block>
+
+					<th:block th:if="${ userRegistration !=null}">
+						<!--  -->
+
+						<a th:href="@{/user/Listofservices}" class="nav-item nav-link">List
+							of services</a>
+						<div class="nav-item dropdown">
+							<a href="#" class="nav-link dropdown-toggle"
+								data-bs-toggle="dropdown">Explore</a>
+							<div class="dropdown-menu m-0">
+								<a th:href="@{/user/booking}" class="dropdown-item">Booking</a>
+								<a th:href="@{/user/ListOfPartner}" class="dropdown-item">Our
+									rusted Partner</a><a th:href="@{/user/team}" class="dropdown-item">Our
+									Team</a> <a th:href="@{/testimonial}" class="dropdown-item">Feadback</a>
+							</div>
+						</div>
+
+					</th:block>
+
+
+
+					<a th:href="@{contact}" class="nav-item nav-link">Contact</a>
+				</div>
+				<th:block th:if="${ userRegistration ==NULL}">
+					<div class="nav-item dropdown">
+						<a href="#" class="btn btn-primary py-2 px-4"
+							data-bs-toggle="dropdown">Login/Registration</a>
+						<div class="dropdown-menu m-0">
+							<a th:href="@{/login}" class="dropdown-item">Login</a> <a
+								th:href="@{/UserRegistration}" class="dropdown-item">UserRegistraton</a><a
+								th:href="@{/registartion}" class="dropdown-item">Join Us</a> <a
+								th:href="@{/logout}" class="dropdown-item">Logout</a>
+						</div>
+					</div>
+				</th:block>
+
+
+
+				<th:block th:if="${userRegistration != null}">
+					<a class="nav-item nav-link" href="/logout">Logout</a>
+					<li class="btn btn-primary py-2 px-4">
+						[[${userRegistration.name}]]</li>
+				</th:block>
+			</div>
+		</nav>
+	</div>
+
+	<div class="container-xxl py-5 bg-dark hero-header mb-5">
+		<div class="container text-center my-5 pt-5 pb-4">
+			<h1 class="display-3 text-white mb-3 animated slideInDown">List
+				of work</h1>
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb justify-content-center text-uppercase">
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+					<li class="breadcrumb-item"><a href="#">Pages</a></li>
+					<li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+
+
+	<div class="container-fluid p-2">
+
+		<!-- Filter form -->
+		<form class="mb-4">
+			<label for="districtFilter" class="me-2">Filter by District:</label>
+			<select id="districtFilter">
+				<option value="All">All</option>
+				<option value="sitamarhi">sitamarhi</option>
+				<option value="hapur">hapur</option>
+				<option value="bhaglpur">bhaglpur</option>
+
+			</select> <label for="searchTerm" class="ms-2">Enter name Name:</label>
+			<input type="text" id="searchTerm" placeholder="Enter Serial Name">
+			<button type="button" id="searchButton">Search</button>
+		</form>
+		<div class="container-fluid p-2">
+			<h4 class="text-center">All partner</h4>
 			<div class="row">
-				<div th:each="n:${ListOfPartner}" >
+				<div th:each="n:${ListOfPartner}">
 					<div class="card shadow-sm p-1 mb-2 bg-body rounded">
+					
 						<div class="card-body">
 							<div class="text-center">
-								<img alt="" src="">
+								<img alt="" src="img/partner.jpg">
 							</div>
-							<h4><p class="bold">[[${n.name}]]</p></h4>
+							<h4>
+								<p class="bold">[[${n.name}]]</p>
+							</h4>
 							<p>Occupation [[${n.occupation}]]</p>
 							<P>Year of experience :[[${n.experience}]]</P>
 							<p>My location : [[${n.district}]]</p>
 							<P>Range of service provide :[[${n.range}]]Km</P>
-							<div class="text-center">
-							
-							</div>
+							<div class="text-center"></div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-        
-</section>
-        
 </body>
 
 </html>
