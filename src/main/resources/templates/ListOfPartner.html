@@ -46,7 +46,6 @@
 	$(document)
 			.ready(
 					function() {
-						// Function to filter partners based on district and serial name
 						function filterPartners() {
 							var selectedDistrict = $("#districtFilter").val();
 							var searchTerm = $("#searchTerm").val()
@@ -60,33 +59,56 @@
 												var partnerDistrict = $(this)
 														.find(".district")
 														.text().toLowerCase();
-												var partnerSerialName = $(this)
-														.find(".serialName")
-														.text().toLowerCase();
+												var partnerName = $(this).find(
+														".name").text()
+														.toLowerCase(); // Assuming a class for names
+
+												// Improved search logic (consider using a fuzzy search library for more flexibility)
+												var matchFound = partnerName
+														.indexOf(searchTerm) !== -1; // Basic search for substring
 
 												// Check if the partner matches the selected district and search term
 												if ((selectedDistrict === "All" || partnerDistrict === selectedDistrict)
-														&& (partnerSerialName
-																.includes(searchTerm) || searchTerm === "")) {
+														&& matchFound) {
 													$(this).show();
 												}
 											});
 						}
 
-						// Event handler for search button click
 						$("#searchButton").click(function() {
 							filterPartners();
 						});
 
-						// Event handlers for filter changes
 						$("#districtFilter, #searchTerm").change(function() {
 							filterPartners();
 						});
 
-						// Initial filter
-						filterPartners();
+						filterPartners(); // Initial filter
 					});
 </script>
+<style>
+#shop {
+	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+		url("img/partner.jpg");
+	background-size: cover;
+	background-position: top;
+	background-repeat: no-repeat;
+	padding-top: 600px;
+	padding-left: 1200px;
+	margin-bottom: -300px;
+	margin-left: -20px;
+}
+
+#name {
+	position: relative;
+	top: -300px;
+	left: 480px;
+}
+
+body {
+	overflow-x: hidden;
+}
+</style>
 
 
 </head>
@@ -187,8 +209,8 @@
 				<option value="hapur">hapur</option>
 				<option value="bhaglpur">bhaglpur</option>
 
-			</select> <label for="searchTerm" class="ms-2">Enter name Name:</label>
-			<input type="text" id="searchTerm" placeholder="Enter Serial Name">
+			</select> <label for="searchTerm" class="ms-2">Enter name Name:</label> <input
+				type="text" id="searchTerm" placeholder="Enter Serial Name">
 			<button type="button" id="searchButton">Search</button>
 		</form>
 		<div class="container-fluid p-2">
@@ -196,18 +218,21 @@
 			<div class="row">
 				<div th:each="n:${ListOfPartner}">
 					<div class="card shadow-sm p-1 mb-2 bg-body rounded">
-					
+
 						<div class="card-body">
-							<div class="text-center">
-								<img alt="" src="img/partner.jpg">
+							<div class="col-sm-4 offset-sm-12">
+								<div class="text-center" id="shop"></div>
+
 							</div>
-							<h4>
-								<p class="bold">[[${n.name}]]</p>
+							<h4 id="name">
+								<p class="bold" style="color: rgb(36, 100, 200)">[[${n.name}]]</p>
 							</h4>
-							<p>Occupation [[${n.occupation}]]</p>
-							<P>Year of experience :[[${n.experience}]]</P>
-							<p>My location : [[${n.district}]]</p>
-							<P>Range of service provide :[[${n.range}]]Km</P>
+							<div style="color: rgb(36, 100, 200)">
+								<p>Occupation [[${n.occupation}]]</p>
+								<P>Year of experience :[[${n.experience}]]</P>
+								<p>My location : [[${n.district}]]</p>
+								<P>Range of service provide :[[${n.range}]]Km</P>
+							</div>
 							<div class="text-center"></div>
 						</div>
 					</div>

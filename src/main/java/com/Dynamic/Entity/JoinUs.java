@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "partner_registration")
-public class PartnerRegistration {
+public class JoinUs {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;

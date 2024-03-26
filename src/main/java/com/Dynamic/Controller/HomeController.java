@@ -1,8 +1,5 @@
 package com.Dynamic.Controller;
 
-import java.security.Principal;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,17 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.Dynamic.Dao.OrderBookingRepository;
-import com.Dynamic.Dao.PartnerRepository;
 import com.Dynamic.Entity.Contact;
-import com.Dynamic.Entity.OrderBooking;
-import com.Dynamic.Entity.PartnerRegistration;
 import com.Dynamic.Entity.UserRegistration;
-import com.Dynamic.service.OrderBookingService;
-import com.Dynamic.service.PartnerRegistationService;
+import com.Dynamic.service.JoinUsService;
 import com.Dynamic.service.UserRegistrationServise;
 import com.Dynamic.service.UserService;
-
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -28,10 +19,10 @@ public class HomeController {
 	 @Autowired
 	private UserService userService;
 	 @Autowired
-	private PartnerRegistationService partnerRegistration;
+	private JoinUsService partnerRegistration;
 	 
 	 @Autowired
-	private UserRegistrationServise userRegistrationServise;
+	private UserRegistrationServise userRegistrationServise; 
 		
 		
 	 
@@ -80,39 +71,8 @@ public class HomeController {
 		return "redirect:/thankyou";
 	}
 	
-	//registration of user
-	@RequestMapping("/registartion")
-	public String PartnerRegistraion() {
-		return "registartion";
-	}
-	
-	
-	//save registration form
-	@PostMapping("/SaveRegistartion")
-	public String SaveRegistraion(@ModelAttribute PartnerRegistration partner,HttpSession session) {
+	//Contact 
 		
-		boolean f=partnerRegistration.existEmailCheck(partner.getEmail());
-		if(f) {
-			session.setAttribute("msg", "This email is already exist");
-		}else {
-			PartnerRegistration savePartnerRegistration = partnerRegistration.savePartnerRegistration(partner);
-			if(savePartnerRegistration!=null) {
-				session.setAttribute("msg","Your registration have done successfully" );
-			}else {
-				session.setAttribute("msg", "Your registration haven't done successfully");
-			}
-		}
-		
-		return "redirect:/SaveRegistartion";
-	}
-	
-	
-	
-	@RequestMapping("/UserRegistration")
-	public String UserRegistraion() {
-		return "UserRegistration";
-	}
-	
 	@PostMapping("/SaveUserRegistraion")
 	public String SaveUserRegistraion( @ModelAttribute UserRegistration userRegistration, HttpSession session, Model m) {
 		boolean f = userRegistrationServise.existEmailChack(userRegistration.getEmail());
@@ -131,6 +91,14 @@ public class HomeController {
 		System.out.println("User Registration: " + userRegistration);
 		return "redirect:/UserRegistration";
 	}
+	
+	
+	@RequestMapping("/UserRegistration")
+	public String UserRegistraion() {
+		return "UserRegistration";
+	}
+	
+	
 	@RequestMapping("/thankyou")
 	public String thankyou() {
 		return "thankyou";

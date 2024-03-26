@@ -40,13 +40,13 @@
 					<div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
 						<h5
 							class="section-title ff-secondary text-start text-primary fw-normal"></h5>
-						<h1 class="text-white mb-4">Registration Form</h1>
+						<h1 class="text-white mb-4">Join Us</h1>
 						<th:block th:if="${session.msg}">
 							<h6 class="text-center text-success">[[${session.msg}]]</h6>
 							<th:block th:text="${@userServiceImpl.removeSessionMsg}"></th:block>
 						</th:block>
 
-						<form th:action="@{SaveRegistartion}" method="post">
+						<form th:action="@{SaveJoinUs}" method="post">
 
 
 							<div class="row g-3">
@@ -94,7 +94,7 @@
 										data-target-input="nearest">
 										<input type="text" name="occupation" class="form-control"
 											id="occupation" placeholder="occupation" required="required" />
-										<label for="datetime">Occupation</label>
+										<label for="datetime">Type of service</label>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -138,7 +138,7 @@
 									</div>
 								</div>
 								<div class="col-12">
-									<button class="btn btn-primary w-100 py-3" type="submit">Register</button>
+									<button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
 								</div>
 							</div>
 						</form>
