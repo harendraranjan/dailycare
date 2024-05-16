@@ -49,7 +49,7 @@
 		<nav
 			class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
 			<a href="/" class="navbar-brand p-0">
-				<h1 class="text-primary m-0">Handy Dailycare</h1>
+				<h2 class="text-primary m-0">Holistic Daily-Care</h2>
 			</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -78,7 +78,7 @@
 							<div class="dropdown-menu m-0">
 								<a th:href="@{/user/booking}" class="dropdown-item">Booking</a>
 								<a th:href="@{/user/ListOfPartner}" class="dropdown-item">Our
-									rusted Partner</a><a th:href="@{/user/team}" class="dropdown-item">Our
+									trusted Partner</a><a th:href="@{/user/team}" class="dropdown-item">Our
 									Team</a> <a th:href="@{/testimonial}" class="dropdown-item">Feadback</a><a
 									th:href="@{/user/JoinUs}" class="dropdown-item">Join Us</a>
 							</div>
@@ -108,6 +108,11 @@
 				<th:block th:if="${userRegistration != null}">
 					<a class="nav-item nav-link" href="/logout">Logout</a>
 					<li class="btn btn-primary py-2 px-4">
+						<th:block th:if="${'ranjanharendr@gmail.com' == userRegistration.email}">
+    						ADMIN
+						</th:block>
+
+
 						[[${userRegistration.name}]]</li>
 
 				</th:block>

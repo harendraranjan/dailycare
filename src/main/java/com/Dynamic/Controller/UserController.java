@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -97,29 +99,77 @@ public class UserController {
 	public String login() {
 		return "redirect:/index";
 	}
-	
-	@RequestMapping(value = {"joinus", "JoinUs","joinUs","Joinus"})
+
+	@RequestMapping(value = { "joinus", "JoinUs", "joinUs", "Joinus" })
 	public String JoinUs() {
 		return "JoinUs";
 	}
 
+	// show all user
+	@RequestMapping("/showUser")
+	public String showUser(Model m, Principal p) {
+		List<JoinUs> listOfPartners = partnerRegistration.getAllPartners();
+		m.addAttribute("ListOfPartner", listOfPartners);
+		return "showUser";
+	}
 
-//save registration form
-@PostMapping("/SaveJoinUs")
-public String SaveRegistraion(@ModelAttribute JoinUs partner,HttpSession session) {
-	
-	boolean f=partnerRegistration.existEmailCheck(partner.getEmail());
-	if(f) {
-		session.setAttribute("msg", "This email is already exist");
-	}else {
-		JoinUs savePartnerRegistration = partnerRegistration.saveJoinUs(partner);
-		if(savePartnerRegistration!=null) {
-			session.setAttribute("msg","Your registration have done successfully" );
-		}else {
-			session.setAttribute("msg", "Your registration haven't done successfully");
+	@RequestMapping("/editUser/{id}")
+	public String editUser(@PathVariable int id, Model model) {
+		JoinUs user = partnerRegistration.getPartnerById(id);
+
+		if (user != null) {
+
+			model.addAttribute("user", user);
+			return "editUser";
+		} else {
+
+			return "redirect:/user/showUser";
 		}
 	}
-	
-	return "redirect:/JoinUs";
-}
+
+	@PostMapping("/editUser")
+	public String saveEditedUser(@ModelAttribute JoinUs user, HttpSession session) {
+		boolean success = partnerRegistration.updatePartner(user);
+
+		if (success) {
+			session.setAttribute("msg", "User information updated successfully");
+		} else {
+			session.setAttribute("msg", "Failed to update user information");
+		}
+
+		return "redirect:/user/showUser";
+	}
+
+	// Delete User
+	@GetMapping("/deletUser/{id}")
+	public String deletNote(@PathVariable int id, HttpSession session) {
+		boolean f = partnerRegistration.deletePartner(id);
+
+		if (f) {
+			session.setAttribute("msg", "Delete successfully completed");
+		} else {
+			session.setAttribute("msg", "Registration not done successfully");
+		}
+
+		return "redirect:/user/showUser";
+	}
+
+	// save registration form
+	@PostMapping("/SaveJoinUs")
+	public String SaveRegistraion(@ModelAttribute JoinUs partner, HttpSession session) {
+
+		boolean f = partnerRegistration.existEmailCheck(partner.getEmail());
+		if (f) {
+			session.setAttribute("msg", "This email is already exist");
+		} else {
+			JoinUs savePartnerRegistration = partnerRegistration.saveJoinUs(partner);
+			if (savePartnerRegistration != null) {
+				session.setAttribute("msg", "Your registration have done successfully");
+			} else {
+				session.setAttribute("msg", "Your registration haven't done successfully");
+			}
+		}
+
+		return "redirect:/user/JoinUs";
+	}
 }

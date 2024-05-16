@@ -12,4 +12,10 @@ public interface JoinUsService {
     void removeSessionMessage();
 
     List<JoinUs> getAllPartners();
+    
+    public boolean deletePartner(int id);
+
+	JoinUs getPartnerById(int id);
+
+	boolean updatePartner(JoinUs user);
 }

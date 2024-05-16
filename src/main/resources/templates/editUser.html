@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="utf-8">
+    <title>Edit Partner Information</title>
+</head>
+
+<body>
+    <section>
+        <div class="container-xxl py-5 bg-dark hero-header mb-5">
+            <!-- Header section -->
+        </div>
+
+        <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <!-- Video section -->
+                </div>
+                <div class="col-md-6 bg-dark d-flex align-items-center">
+                    <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                        <h1 class="text-white mb-4">Edit Partner Information</h1>
+                        <th:block th:if="${session.msg}">
+                            <h6 class="text-center text-success">[[${session.msg}]]</h6>
+                            <th:block th:text="${@partnerRegistration.removeSessionMessage()}"></th:block>
+                        </th:block>
+                        <form th:action="@{/user/editUser}" method="post" th:object="${user}">
+                            <input type="hidden" th:field="*{id}">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Your Name">
+                                        <label for="name">Your Name</label>
+                                    </div>
+                                </div>
+                                <!-- Add input fields for other partner information -->
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Your Email">
+                                        <label for="email">Your Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input name="phone" type="tel" th:field="*{phone}" class="form-control" id="phone" placeholder="Your Phone Number">
+                                        <label for="phone">Phone number</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input name="altPhone" th:field="*{phone}" type="tel" class="form-control" id="altPhone" placeholder="Alternate Number">
+                                        <label for="altPhone">Alternate number</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating date" id="date3" data-target-input="nearest">
+                                        <input type="text" name="occupation" th:field="*{occupation}" class="form-control" id="occupation" placeholder="occupation">
+                                        <label for="occupation">Type of service</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select name="experience" th:field="*{experience}" class="form-select" id="experience">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6+</option>
+                                        </select>
+                                        <label for="experience">Year Of Experience</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" name="district" th:field="*{district}" class="form-control" id="district" placeholder="Your district">
+                                        <label for="district">District</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select name="range" class="form-select" th:field="*{range}" id="range">
+                                            <option value="1">1km</option>
+                                            <option value="2">2km</option>
+                                            <option value="3">3km</option>
+                                            <option value="4">4km</option>
+                                            <option value="5">5km</option>
+                                            <option value="6">6km+</option>
+                                        </select>
+                                        <label for="range">Your working range</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea name="about" class="form-control" th:field="*{about}" id="about" placeholder="Special Request" style="height: 100px"></textarea>
+                                        <label for="about">About you</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Update Information</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    </div>
+</body>
+
+</html>

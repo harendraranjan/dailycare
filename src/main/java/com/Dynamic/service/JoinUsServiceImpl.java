@@ -46,4 +46,32 @@ public class JoinUsServiceImpl implements JoinUsService {
     public List<JoinUs> getAllPartners() {
         return joinUsRepository.findAll();
     }
+
+	public boolean deletePartner(int id) {
+		JoinUs user=joinUsRepository.findById(id).get();
+		if(user!=null) {
+			joinUsRepository.delete(user);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public JoinUs getPartnerById(int id) {
+	    return joinUsRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public boolean updatePartner(JoinUs user) {
+	    JoinUs existingUser = joinUsRepository.findById(user.getId()).orElse(null);
+	    if (existingUser != null) {
+	        existingUser.setName(user.getName());
+	        existingUser.setEmail(user.getEmail());
+	        
+	        joinUsRepository.save(existingUser);
+	        return true; 
+	    }
+	    return false; 
+	}
+
 }
