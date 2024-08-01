@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FirstDynamic1Application {
+public class HolisticDailyCareApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FirstDynamic1Application.class, args);
+		SpringApplication.run(HolisticDailyCareApplication.class, args);
 	}
 
 }

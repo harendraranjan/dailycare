@@ -24,7 +24,8 @@
                             <h6 class="text-center text-success">[[${session.msg}]]</h6>
                             <th:block th:text="${@partnerRegistration.removeSessionMessage()}"></th:block>
                         </th:block>
-                        <form th:action="@{/user/editUser}" method="post" th:object="${user}">
+                       <form th:action="@{/admin/editPartner}" method="post" th:object="${Partner}">
+
                             <input type="hidden" th:field="*{id}">
                             <div class="row g-3">
                                 <div class="col-md-6">

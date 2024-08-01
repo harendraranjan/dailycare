@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>NeighboutHood</artifactId>
+	<artifactId>Holistic-Daily-Care</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>FirstDynamic-1</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Holistic-Daily-Care</name>
+	<description>This project i made as per client requirement</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

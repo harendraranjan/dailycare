@@ -38,8 +38,7 @@ public class MySecurityConfig {
         };
     	http.csrf((csrf) -> csrf.disable())
             .authorizeHttpRequests(authorize -> authorize
-                //.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() 
-            	.requestMatchers("/js/**", "/css/**","static/**").permitAll()	
+            	.requestMatchers(permitted).permitAll()	
                 .requestMatchers("/user/**").hasRole("USER") 
                 .requestMatchers("/admin/**").hasRole("ADMIN") 
                 .anyRequest().permitAll() 

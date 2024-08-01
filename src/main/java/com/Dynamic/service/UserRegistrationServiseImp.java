@@ -1,5 +1,7 @@
 package com.Dynamic.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,19 @@ public class UserRegistrationServiseImp implements UserRegistrationServise {
         HttpSession session = request.getSession();
         session.removeAttribute("msg");
     }
-
-
+    
+    @Override
+	public List<UserRegistration> getAllUser() {
+		return userRegistrationRepository.findAll();
+	}
+    
+	@Override
+	public boolean deleteUser(int id) {
+		UserRegistration user=userRegistrationRepository.findById(id).get();
+		if(user!=null) {
+			userRegistrationRepository.delete(user);
+			return true;
+		}
+		return false;
+	}
 }

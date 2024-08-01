@@ -16,8 +16,9 @@
                     <h1 class="display-3 text-white mb-3 animated slideInDown">All User</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">About</li>
+                            <li class="breadcrumb-item"><a href="/">All User</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page"><a href="/admin/showPartner">All Partner</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page"><a href="#">All Order</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -36,13 +37,18 @@
 							<div class="text-center">
 								<img alt="" src="">
 							</div>
-							<p class="fw-bold">[[${n.name}]]</p>
-							<p class="fw-bold">[[${n.email}]]</p>
-							<p class="fw-bold">[[${n.phone}]]</p>
+							<p class="fw-bold">Name: [[${n.name}]]</p>
+							<p class="fw-bold">Email: [[${n.email}]]</p>
+							<p class="fw-bold">Phone: [[${n.phone}]]</p>
+							<p class="fw-bold">Phone: [[${n.altPhone}]]</p>
+							<p class="fw-bold">Occupation: [[${n.occupation}]]</p>
+							<p class="fw-bold">Experience: [[${n.experience}]]</p>
+							<p class="fw-bold">Range: [[${n.range}]]</p>
+							<p class="fw-bold">District: [[${n.district}]]</p>
 							
 							<div class="text-center">
-								<a th:href="@{'editUser/'+${n.id}}" class="btn btn-primary btn-sm">Edit</a>
-								 <a	th:href="@{'deletUser/'+${n.id}}" class="btn btn-primary btn-sm">Delete</a>
+								<a th:href="@{'editPartner/'+${n.id}}" class="btn btn-primary btn-sm">Edit</a>
+								 <a	th:href="@{'deletePartner/'+${n.id}}" class="btn btn-primary btn-sm">Delete</a>
 							</div>
 						</div>
 					</div>
