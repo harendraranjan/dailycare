@@ -70,7 +70,7 @@
 
 					<a th:href="@{/contact}" class="nav-item nav-link">Contact</a>
 				</div>
-				<th:block th:if="${ userRegistration ==NULL}">
+				<th:block th:if="${ userRegistration ==null}">
 					<div class="nav-item dropdown">
 						<a href="#" class="btn btn-primary py-2 px-4"
 							data-bs-toggle="dropdown">Login/Registration</a>
@@ -83,8 +83,6 @@
 					</div>
 				</th:block>
 
-
-
 				<th:block th:if="${userRegistration != null}">
 					<a class="nav-item nav-link" href="/logout">Logout</a>
 					<li class="btn btn-primary py-2 px-4">
@@ -92,15 +90,8 @@
     						ADMIN
 						</th:block>
 
-
 						[[${userRegistration.name}]]</li>
-
 				</th:block>
-
-
-
-
-
 
 			</div>
 		</nav>
