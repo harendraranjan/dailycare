@@ -1,9 +1,10 @@
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-ARG JAVA_OPTS
-ENV JAVA_OPTS=$JAVA_OPTS
-COPY target/Holistic-Daily-Care-0.0.1-SNAPSHOT.jar holisticdailycare.jar
-EXPOSE 3000
-ENTRYPOINT exec java $JAVA_OPTS -jar holisticdailycare.jar
-# For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.
-#ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar holisticdailycare.jar
+# Build stage
+FROM maven:3.8.1-openjdk-17-slim as build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
+# Run stage
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /app/target/Holistic-Daily-Care-0.0.1-SNAPSHOT.jar /app/app.jar
+CMD ["java", "-jar", "/app/app.jar"]
